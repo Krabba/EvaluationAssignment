@@ -1,0 +1,100 @@
+@PricingService_HostAddress = http://localhost:5016
+
+
+## GET /customers - Get all customers
+GET {{PricingService_HostAddress}}/customers
+Accept: application/json
+
+###
+## POST /customers - Create a customer
+
+POST {{PricingService_HostAddress}}/customers
+Content-Type: application/json
+
+{
+  
+}
+
+###
+## POST /subscriptions - Create Test A scenario
+POST {{PricingService_HostAddress}}/subscriptions
+Content-Type: application/json
+
+{
+    "customerId": 1,
+    "subscriptions": [
+        {
+            "serviceId": 1,
+            "discountPeriods": [],
+            "startDate": "2019-09-20",
+            "endDate": "2019-10-01"
+        },
+        {
+            "serviceId": 3,
+            "discountPeriods": [
+                {
+                    "discount": 0.2,
+                    "startDate": "2019-09-22",
+                    "endDate": "2019-09-24"
+                }
+            ],
+            "startDate": "2019-09-20",
+            "endDate": "2019-10-01"
+        }
+    ]
+}
+
+###
+## POST /subscriptions - Create Test B scenario
+#POST {{PricingService_HostAddress}}/subscriptions
+#Content-Type: application/json
+#
+#{
+#  "customerId": 2,
+#  "subscriptions": [
+#    {
+#      "serviceId": 2,
+#      "discountPeriods": [
+#        {
+#          "discount": 1,
+#          "startDate": "2018-01-01",
+#          "endDate": "2018-07-20"
+#        },
+#        {
+#          "discount": 0.3,
+#          "startDate": "2018-07-21",
+#          "endDate": "2019-10-01"
+#        }
+#      ],
+#      "startDate": "2018-01-01",
+#      "endDate": "2019-10-01"
+#    },
+#    {
+#      "serviceId": 3,
+#      "discountPeriods": [
+#        {
+#          "discount": 1,
+#          "startDate": "2018-01-01",
+#          "endDate": "2018-07-20"
+#        },
+#        {
+#          "discount": 0.3,
+#          "startDate": "2018-07-21",
+#          "endDate": "2019-10-01"
+#        }
+#      ],
+#      "startDate": "2018-01-01",
+#      "endDate": "2019-10-01"
+#    }
+#  ]
+#}
+
+###
+## GET /pricing - Get pricing details for Test A scenario
+GET {{PricingService_HostAddress}}/pricing?customerId=1&startDate=2019-09-20&endDate=2019-10-01
+Accept: application/json
+
+###
+## GET /pricing - Get pricing details for Test B scenario
+#GET {{PricingService_HostAddress}}/pricing?customerId=2&startDate=2018-01-01&endDate=2019-10-01
+#Accept: application/json
